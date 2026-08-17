@@ -259,7 +259,7 @@ h1,h2,h3{font-family:"Space Grotesk",sans-serif;letter-spacing:-.035em}
     <a href="#experience" data-sec="experience">Experience</a>
     <a href="#skills" data-sec="skills">Stack</a>
     <a href="#projects" data-sec="projects">Projects</a>
-    <a href="#contact" data-sec="contact">Contact</a>
+    <a href="#" data-scroll="contact">Contact</a>
   </div>
   <a class="nav-cta" href="#contact">GET IN TOUCH</a>
 </nav>
@@ -499,6 +499,19 @@ if ("IntersectionObserver" in window){
   }, {rootMargin:"-42% 0px -50% 0px"});
   sections.forEach(section=>spy.observe(section));
 }
+document.querySelectorAll("[data-scroll]").forEach(link => {
+  link.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const target = document.getElementById(this.dataset.scroll);
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+
+    history.replaceState(null, "", window.location.pathname);
+  });
+});
 </script>
 </body>
 </html>
